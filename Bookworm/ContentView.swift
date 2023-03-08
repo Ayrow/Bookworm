@@ -16,6 +16,7 @@ struct ContentView: View {
     var body: some View {
         NavigationStack {
             Text("Count: \(books.count)")
+            
                 .navigationTitle("Bookworm")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
