@@ -63,8 +63,8 @@
 		94B1866129B77C600053361D /* Bookworm */ = {
 			isa = PBXGroup;
 			children = (
-				94B1866229B77C600053361D /* BookwormApp.swift */,
 				94DC6BB229B8BBBC008B0C6B /* AddBookView.swift */,
+				94B1866229B77C600053361D /* BookwormApp.swift */,
 				94B1866429B77C600053361D /* ContentView.swift */,
 				94D5CBB929BA196100BDF066 /* DetailView.swift */,
 				94DC6BB629B8C39D008B0C6B /* EmojiRatingView.swift */,
