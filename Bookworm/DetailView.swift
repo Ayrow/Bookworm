@@ -35,6 +35,8 @@ struct DetailView: View {
                 }
                 
                 Text(dateRepresentation(for: book.date))
+                    .font(.title3)
+                    .padding()
                 
                 Text(book.author ?? "Unknown author")
                     .font(.title)
