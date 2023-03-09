@@ -13,8 +13,9 @@ struct AddBookView: View {
     @State private var title = ""
     @State private var author = ""
     @State private var rating = 3
-    @State private var genre = ""
+    @State private var genre = "Fantasy"
     @State private var review = ""
+    @State private var showingFormAlert = false
     
     let genres = ["Fantasy", "Horror", "Kids", "Romance", "Thriller", "Mystery", "Poetry"]
     
@@ -41,22 +42,33 @@ struct AddBookView: View {
                 
                 Section {
                     Button("Save") {
-                        let newBook = Book(context: moc)
-                        newBook.id = UUID()
-                        newBook.title = title
-                        newBook.author = author
-                        newBook.rating = Int16(rating)
-                        newBook.genre = genre
-                        newBook.review = review
+                        if title.isEmpty || author.isEmpty || genre.isEmpty {
+                            showingFormAlert = true
+                        } else {
+                            let newBook = Book(context: moc)
+                            newBook.id = UUID()
+                            newBook.title = title
+                            newBook.author = author
+                            newBook.rating = Int16(rating)
+                            newBook.genre = genre
+                            newBook.review = review
+                            newBook.date = Date.now
+                            
+                            try? moc.save()
+                            dismiss()
+                        }
                         
-                        try? moc.save()
-                        dismiss()
+                       
                     }
                 }
             }
             .navigationTitle("Add Book")
+            .alert("Form incomplete", isPresented: $showingFormAlert) {
+                Button("Ok", role: .cancel) {}
+            }
         }
     }
+    
 }
 
 struct AddBookView_Previews: PreviewProvider {

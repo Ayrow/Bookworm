@@ -34,6 +34,8 @@ struct DetailView: View {
                     
                 }
                 
+                Text(dateRepresentation(for: book.date))
+                
                 Text(book.author ?? "Unknown author")
                     .font(.title)
                     .foregroundColor(.secondary)
@@ -59,7 +61,7 @@ struct DetailView: View {
                 Button {
                     showingDeleteAlert = true
                 } label: {
-                    Label("Delete this book", image: "trash")
+                    Label("Delete this book", systemImage: "trash")
                 }
             }
             
@@ -71,5 +73,12 @@ struct DetailView: View {
         
         try? moc.save()
         dismiss()
+    }
+    
+    func dateRepresentation(for date: Date?) -> String {
+        guard let date = date else { return "Date Unavailable" }
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long // <-- this is what's missing
+        return dateFormatter.string(from: date)
     }
 }
